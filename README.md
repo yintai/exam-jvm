@@ -28,4 +28,5 @@
 2. 给我们发送一个 Pull request，我们会 Review 您的代码。
 
 ## 其他
-* 如果您的构建和运行过程比较难以理解的话，建议您修改 Readme 的这个地方添加一些说明文字。
+
+测试代码在com.gxl.test包下的OrderTest类里面
