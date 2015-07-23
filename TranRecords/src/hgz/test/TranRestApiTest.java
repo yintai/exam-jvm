@@ -23,39 +23,50 @@ public class TranRestApiTest {
 	    public   void before()  
 	    
 	    {
-	    	new BaseImpl().tranRecordMap.clear();
+	    
 	    	tranRestApi = new TranRestApiImpl();
 	     	UserInfo user  = new UserInfo();
-	     	initWaitPayData(user);  
-	     	intPaySuccessData(user);  
-	    }
-		private void intPaySuccessData(UserInfo user) {
-			for(int i =100;i<102 ; i++ )
+	    
+			for(int i =100;i<105 ; i++ )
 	     	{ 
+				
 	    	user.setUserId("user_id:"+i);
 	    	user.setUserName("张三");
 	    	TranRecord tranRecord = new TranRecord();
 	    	tranRecord.setUser(user);
 	    	tranRecord.setTranRecordId("tran_id:"+i);
 	    	tranRecord.setTranAmount(86*100+5*10);//86元5角人民币 转换为分
-	    	tranRecord.setTranStatus(TranConstant.TRAN_STATUS_PLAY_SUCESS); 
-	    	tranRecord.setTranType(TranConstant.TRAN_TYPE_PLAY);
+		    if(i<103)
+		    { 
+		    	tranRecord.setTranStatus(TranConstant.TRAN_STATUS_PLAY_SUCESS); 
+	    	}else 
+	    	{
+	    		tranRecord.setTranStatus(TranConstant.TRAN_STATUS_WAITPLAY); 
+	    	    
+	    	}	
+	        tranRecord.setTranType(TranConstant.TRAN_TYPE_PLAY);
 	    	tranRecord.setTranCurrency(TranConstant.TRAN_CURRENCY_RMB);
 	    	tranRecord.setCreateDate(new Date());
 	    	String method = "";
 	    	String url= "";
 	    	String version= "";
-	    	tranRestApi.creatTranRecord(method, url, version, tranRecord);
-	       }
-		}
-		private void initWaitPayData(UserInfo user) {
-			for(int i =10;i<13 ; i++ )
-	     	{ 
-	    	user.setUserId("user_id:"+i);
+	    	
+		 
+			tranRestApi.creatTranRecord(method, url, version, tranRecord);
+	     	  }     
+		}  	
+	    
+	    
+	    
+	    @Test  
+	    public void testCreateTran() {
+	    	
+	    	UserInfo user  = new UserInfo();
+	    	user.setUserId("1");
 	    	user.setUserName("张三");
 	    	TranRecord tranRecord = new TranRecord();
 	    	tranRecord.setUser(user);
-	    	tranRecord.setTranRecordId("tran_id:"+i);
+	    	tranRecord.setTranRecordId("1");
 	    	tranRecord.setTranAmount(86*100+5*10);//86元5角人民币 转换为分
 	    	tranRecord.setTranStatus(TranConstant.TRAN_STATUS_WAITPLAY); 
 	    	tranRecord.setTranType(TranConstant.TRAN_TYPE_PLAY);
@@ -63,39 +74,17 @@ public class TranRestApiTest {
 	    	tranRecord.setCreateDate(new Date());
 	    	String method = "";
 	    	String url= "";
-	    	String version= "";
+	    	String version = "";
 	    	tranRestApi.creatTranRecord(method, url, version, tranRecord);
-	       }
-		}  	
-//	    @Test  
-//	   
-//	    public void testCreateTran() {
-//	    	
-//	    	UserInfo user  = new UserInfo();
-//	    	user.setUserId("1");
-//	    	user.setUserName("张三");
-//	    	TranRecord tranRecord = new TranRecord();
-//	    	tranRecord.setUser(user);
-//	    	tranRecord.setTranRecordId("1");
-//	    	tranRecord.setTranAmount(86*100+5*10);//86元5角人民币 转换为分
-//	    	tranRecord.setTranStatus(TranConstant.TRAN_STATUS_WAITPLAY); 
-//	    	tranRecord.setTranType(TranConstant.TRAN_TYPE_PLAY);
-//	    	tranRecord.setTranCurrency(TranConstant.TRAN_CURRENCY_RMB);
-//	    	tranRecord.setCreateDate(new Date());
-//	    	String method = "";
-//	    	String url= "";
-//	    	String version = "";
-//	    	tranRestApi.creatTranRecord(method, url, version, tranRecord);
-//	    	
-//	    	
-//	    	Assert.assertEquals(8650, new BaseImpl().tranRecordMap.get("1").getTranAmount());
-//	    	
-//
-//	    	Assert.assertEquals(TranConstant.TRAN_STATUS_WAITPLAY, new BaseImpl().tranRecordMap.get("1").getTranStatus());
-//	    	
 	    	
 	    	
-	  //  }  
+	    	Assert.assertEquals(8650, new BaseImpl().tranRecordMap.get("1").getTranAmount());
+	    	
+
+	    	Assert.assertEquals(TranConstant.TRAN_STATUS_WAITPLAY, new BaseImpl().tranRecordMap.get("1").getTranStatus());
+	    	
+	    	
+	   }  
 	    
 	    @Test  
 		   
