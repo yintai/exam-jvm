@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yintai.exam.dao.CustomerMapper">
+	<resultMap id="BaseResultMap" type="com.yintai.exam.domain.Customer">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="createdate" property="createdate" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, username, createdate
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from customer
+		where id = #{id}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from customer
+		where id = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="com.yintai.exam.domain.Customer">
+		insert into customer (username, createdate
+		)
+		values (#{username,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.yintai.exam.domain.Customer">
+		insert into customer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="createdate != null">
+				createdate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.yintai.exam.domain.Customer">
+		update customer
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				createdate = #{createdate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yintai.exam.domain.Customer">
+		update customer
+		set username = #{username,jdbcType=VARCHAR},
+		createdate = #{createdate,jdbcType=TIMESTAMP}
+		where id = #{id}
+	</update>
+</mapper>
