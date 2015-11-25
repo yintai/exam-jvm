@@ -39,3 +39,5 @@
 6. 单元测试：在src/test/java下面的biz包和demo包。
        * biz包下面的是纯junit测试，测试的时候需要先通过方式1或者方式2启动项目，这是我平时开发最常用的
        * demo下面的是junit与springboot的集成测试，这个直接对方法右键单元测试就行,RestTests我也是第一次用 (∩_∩)
+7.项目启动以后可以通过访问：http://localhost:8080/exam/console 来查看h2数据库中的数据
+  打开这个web页面之后jdbc url要和application.properties里面spring.datasource.url保持一致才行哦
