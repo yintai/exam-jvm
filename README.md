@@ -27,5 +27,17 @@
 1. 提交代码到您的 Github 仓库。
 2. 给我们发送一个 Pull request，我们会 Review 您的代码。
 
-## 其他
-* 如果您的构建和运行过程比较难以理解的话，建议您修改 Readme 的这个地方添加一些说明文字。
+
+## 说明
+1. 开发语言：java
+2. 架构：Springboot+SpringMVC+Mybatis
+3. 项目依赖:maven
+4. 启动方式：
+   * 方法1：直接启动com.yintai.exam.Application 类中的main方法
+   * 方法2：使用tomcat等web容器
+5. 单元测试：在src/test/java下面的biz包和demo包。
+       * biz包下面的是纯junit测试，测试的时候需要先通过方式1或者方式2启动项目，这是我平时开发最常用的
+       * demo下面的是junit与springboot的集成测试，这个直接对方法右键单元测试就行,RestTests我也是第一次用O(∩_∩)O
+6. 数据库：h2    
+   - 项目启动以后可以通过访问：http://localhost:8080/exam/console 来查看h2数据库中的数据
+   - 打开这个web页面之后jdbc url要和application.properties里面spring.datasource.url保持一致才行哦

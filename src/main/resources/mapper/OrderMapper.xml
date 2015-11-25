@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yintai.exam.dao.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.yintai.exam.dao.OrderMapper">
+		<id column="id" property="id" />
+		<result column="customerNo" property="customerno" />
+		<result column="orderNo" property="orderno" />
+		<result column="createdate" property="createdate" />
+		<result column="status" property="status" />
+		<result column="type" property="type" />
+		<result column="money" property="money" />
+		<result column="currency" property="currency" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, customerno, orderno, createdate, status,`type`, money, currency
+	</sql>
+	<!-- 使用resultMap映射作为接受参数 -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from `order`
+		where id = #{id}
+	</select>
+	<!-- 直接使用POJO作为接受参数 -->
+	<select id="selectByStatus" resultType="com.yintai.exam.domain.Order" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from `order`
+		<if test="_parameter!=-1">
+			where status = #{_parameter}
+		</if>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from `order`
+		where id = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="com.yintai.exam.dao.OrderMapper">
+		insert into `order` (customerno, orderno,createdate, status, `type`,money, currency)
+		values (#{customerno,jdbcType=INTEGER},
+		#{orderno,jdbcType=VARCHAR},
+		#{createdate,jdbcType=TIMESTAMP},
+		#{status,jdbcType=INTEGER},
+		#{type,jdbcType=INTEGER},
+		#{money,jdbcType=DECIMAL},
+		#{currency,jdbcType=INTEGER})
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.yintai.exam.dao.OrderMapper">
+		insert into `order`
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="customerno != null">
+				customerNo,
+			</if>
+			<if test="orderno != null">
+				orderNo,
+			</if>
+			<if test="createdate != null">
+				createdate,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="type != null">
+				`type`,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="currency != null">
+				currency,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="customerno != null">
+				#{customerno,jdbcType=INTEGER},
+			</if>
+			<if test="orderno != null">
+				#{orderno,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="currency != null">
+				#{currency,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yintai.exam.dao.OrderMapper">
+		update `order`
+		<set>
+			<if test="customerno != null">
+				customerNo = #{customerno,jdbcType=INTEGER},
+			</if>
+			<if test="orderno != null">
+				orderNo = #{orderno,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				createdate = #{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				`type` = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="currency != null">
+				currency = #{currency,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yintai.exam.dao.OrderMapper">
+		update `order`
+		set customerNo = #{customerno,jdbcType=INTEGER},
+		orderNo = #{orderno,jdbcType=VARCHAR},
+		createdate = #{createdate,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		`type` = #{type,jdbcType=INTEGER},
+		money = #{money,jdbcType=DECIMAL},
+		currency = #{currency,jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+</mapper>
