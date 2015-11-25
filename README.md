@@ -29,13 +29,13 @@
 
 
 ## 说明
-* 开发语言：java
-* 架构：Springboot+SpringMVC+Mybatis
-* 数据库：h2
-* 项目依赖:maven
-* 启动方式：
-*   方法1：直接启动com.yintai.exam.Application 类中的main方法
-*   方法2：使用tomcat等web容器
-* 单元测试：在src/test/java下面的biz包和demo包。
-*            biz包下面的是纯junit测试，测试的时候需要先通过方式1或者方式2启动项目，这是我平时开发最常用的
-*            demo下面的是junit与springboot的集成测试，这个直接对方法右键单元测试就行,RestTests我也是第一次用 (∩_∩)
+1. 开发语言：java
+2. 架构：Springboot+SpringMVC+Mybatis
+3. 数据库：h2
+4. 项目依赖:maven
+5. 启动方式：
+   方法1：直接启动com.yintai.exam.Application 类中的main方法
+   方法2：使用tomcat等web容器
+6. 单元测试：在src/test/java下面的biz包和demo包。
+           biz包下面的是纯junit测试，测试的时候需要先通过方式1或者方式2启动项目，这是我平时开发最常用的
+           demo下面的是junit与springboot的集成测试，这个直接对方法右键单元测试就行,RestTests我也是第一次用 (∩_∩)
