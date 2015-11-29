@@ -29,3 +29,11 @@
 
 ## 其他
 * 如果您的构建和运行过程比较难以理解的话，建议您修改 Readme 的这个地方添加一些说明文字。
+
+
+
+程序运行说明：
+1、该项目是maven项目，需在cmd命令窗口下执行。
+2、进入项目根目录exam-jvm-master，执行命令mvn spring-boot：run。
+3、浏览器输入http://localhost:8080/create?name=张三&createTime=1990-01-12 2012:10:11&type=0&money=86.5&moneyType=1，执行创建订单操作，其中moneytype表示币种，0表示美元，1表示人民币；type为订单类型，0表示支付，1表示退款；createTime为创建订单时间
+4、浏览器输入http://localhost:8080/check?name=张三&type=1，执行查询已有客户的订单，其中name为已有客户的姓名，type为订单状态，1表示交易成功，0表示等待付款。
