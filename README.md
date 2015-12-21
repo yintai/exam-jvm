@@ -1,3 +1,25 @@
+接口说明：
+添加：
+url：http://localhost:8080/test/trade/{userid}/add
+http://localhost:8080/test/trade/1/add
+method：POST
+requestbody ：
+{
+    "status": 0,//交易状态0未成功，1成功
+    "type": 0,//交易类型0支付，1退款
+    "money": 85.6, //价格
+    "moneytype": 1  //交易币种0人民币，1美元
+}
+
+
+按状态查询：
+url: http://localhost:8080/test/trade/1/search
+http://localhost:8080/test/trade/{status}/search
+method：GET
+
+
+
+
 # JVM 编程任务
 -------------------
 
